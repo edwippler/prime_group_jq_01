@@ -1,0 +1,13 @@
+#marketInfo{
+  text-align: center;
+}
+
+#backPack {
+  float: none; 
+}
+
+table {
+  position: fixed;
+  margin: auto;
+  padding: inherit;
+}

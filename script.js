@@ -14,28 +14,28 @@ var pear = new AddFruit ('Pear', 0, 6, 6 );
 
 // var currentPrice = 5;
 // var averagePrice = currentPrice;
-// var newPrice = setInterval(priceAdjuster, 4000); //every 15 seconds
 // var inventoryCount = 0;
 var fruitBowl = [apple, orange, banana, pear];
 console.log(fruitBowl);
 
 $(document).ready(function(){
+	var newPrice = setInterval(priceAdjuster, 15000); //every 15 seconds
+
 //
 //  writing values for each fruit's current price and inventory
 fruitBowl.forEach(function(fruit){
-	$('#tableHead').append('<th>' + fruit.name + '</th>');
+	$('#tableHead').append('<th><img src="fruit_stand_images/' + fruit.name + '.png" alt="' + fruit.name + ' photo" ></th>');
 	$('#currentPriceRow').append('<td>$' + fruit.currentPrice + '</td>');
 	$('#buyButtonRow').append('<td><button class="buyButton" data-fruit="'+ fruit.name +'">Buy</button></td>');
-	$('#averagePriceRow').append('<td>$' + fruit.averagePrice + '</td>');
+	$('#averagePriceRow').append('<td>$<span id="'+fruit.name +'Average"' + fruit.averagePrice + '</td>');
 	$('#inventoryCountRow').append('<td>' + fruit.inventoryCount + '</td>');
 });
-// $('#currentApplePrice').text('apple.currentPrice');
 
 
 	//this is where our event listener is - buy button
 	$('.buyButton').on('click', $(this).data('fruit'), function(){
 		console.log('The ' + $(this).data('fruit') + ' fruit was clicked.' );
-		var clickedAveragePrice = ($(this).averagePrice + $(this).currentPrice) / 2;
+		var clickedAveragePrice = ($(this).closest('#frutit.nam').averagePrice + $(this).currentPrice) / 2;
 		clickedAveragePrice = clickedAveragePrice.toFixed(2);
 		clickedAveragePrice = Number(clickedAveragePrice);
 		console.log('average price:' , clickedAveragePrice);
@@ -71,9 +71,7 @@ if ($(this).currentPrice < .5) {
 	$(this).currentPrice = 9.99;
 }
 }
-// function minMax
-// if current price less 50  = 50
-// else if current >9.99 = 9.99
+
 
 //now we check if this new price is above the max, or below the min
 
